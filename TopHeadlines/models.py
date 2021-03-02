@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Topheadline_detail(models.Model):
-    id = models.DecimalField(max_digits=5,primary_key=True,decimal_places=2)
+    id = models.AutoField(verbose_name='ID',serialize=False,auto_created=True,primary_key=True),
     source = models.CharField(max_length=100,null=True,blank=True)
     author = models.CharField(max_length=100,null=True,blank=True)
     title = models.CharField(max_length=200,null=True,blank=True)

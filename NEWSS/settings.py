@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'TopHeadlines',
     'rest_framework',
     'drf_multiple_model',
+    'CategoryNews',
 ]
 
 MIDDLEWARE = [
