@@ -21,17 +21,18 @@ import requests, json
 
 
 def extract_news():
-    url = 'http://newsapi.org/v2/top-headlines?''country=in&''apiKey=4edd10e4067c48eabfbebdf072f6d9ad&pageSize=100'
+    url = 'http://newsapi.org/v2/top-headlines?''country=in&''apiKey=6713ffdf1ac5461bbae3c39be1978aac&pageSize=100'
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
+    print('before deltetion',len(Topheadline_detail.objects.all()))
     Topheadline_detail.objects.all().delete()
-    # print(json_output)
     news_data = json.loads(json_output)
-    c=1.
+    print('after deltetion', len(Topheadline_detail.objects.all()))
+    c = 1.0
     for u in news_data['articles']:
         if u['author']=='NULL':
             u['author']='not found'
-        Topheadline_detail.objects.create(id=c,source=u['source']['name'],author=u['author'],title=u['title'],description=u['description'],url=u['url'],UrlToImage=u['urlToImage'],PublishedAt=u['publishedAt'][:10],content=u['content'])
-        c+=1.
+        i, created = Topheadline_detail.objects.update_or_create(id=c,source=u['source']['name'],author=u['author'],title=u['title'],description=u['description'],url=u['url'],UrlToImage=u['urlToImage'],PublishedAt=u['publishedAt'][:10],content=u['content'])
+        c+=1.0
 

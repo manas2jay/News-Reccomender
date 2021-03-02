@@ -8,7 +8,6 @@ import datetime
 
 # Create your views here.
 class ListTopHeadline(generics.ListAPIView):
-    extract_news()
     queryset = Topheadline_detail.objects.all()
     serializer_class = TopHeadlineSerializer
 
@@ -17,6 +16,9 @@ class DetailTopHeadline(generics.RetrieveUpdateDestroyAPIView):
     queryset = Topheadline_detail.objects.all()
     serializer_class = TopHeadlineSerializer
 
+def refresh(request):
+    extract_news()
+    return HttpResponse('updated')
 
 # def ref_object(request):
 #
