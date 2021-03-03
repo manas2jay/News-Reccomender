@@ -26,7 +26,7 @@ SECRET_KEY = 'fe37)*divs%!d6isink-aay21z35k#m$$gp-3i947a)%c*hj@h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000','newscoll.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1:8000','peaceful-waters-51554.herokuapp.com']
 
 # Application definition
 
