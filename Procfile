@@ -1,0 +1,1 @@
+web: gunicorn NEWSS.wsgi
