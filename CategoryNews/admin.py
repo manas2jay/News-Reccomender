@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import NewsCat
+from .models import newscat
 
-admin.site.register(NewsCat)
+admin.site.register(newscat)

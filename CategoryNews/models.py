@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class NewsCat(models.Model):
+class newscat(models.Model):
     id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True),
     source = models.CharField(max_length=100, null=True, blank=True)
     author = models.CharField(max_length=100, null=True, blank=True)
@@ -30,21 +30,21 @@ def extract_news_sports():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # print('before sports deltetion', len(NewsCat.objects.all()))
-    # NewsCat.objects.all().delete()
-    # print('after sportsdeltetion', len(NewsCat.objects.all()))
+    # print('before sports deltetion', len(newscat.objects.all()))
+    # newscat.objects.all().delete()
+    # print('after sportsdeltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='sports')
-    print('After sports updation', len(NewsCat.objects.all().filter(category='sports')))
-    print('Total ', len(NewsCat.objects.all()))
-    # for i in NewsCat.objects.all():
+    print('After sports updation', len(newscat.objects.all().filter(category='sports')))
+    print('Total ', len(newscat.objects.all()))
+    # for i in newscat.objects.all():
     #     print(i.title)
 
 
@@ -52,23 +52,23 @@ def extract_news_business():
     url = 'http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=6713ffdf1ac5461bbae3c39be1978aac&pageSize=100'
     response = requests.get(url)
     json_output = json.dumps(response.json(), indent=4)
-    print('before business deltetion', len(NewsCat.objects.all()))
-    print('after business deltetion', len(NewsCat.objects.all()))
+    print('before business deltetion', len(newscat.objects.all()))
+    print('after business deltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='business')
 
-    print('After business updation', len(NewsCat.objects.all().filter(category='business')))
-    print('Total ', len(NewsCat.objects.all()))
+    print('After business updation', len(newscat.objects.all().filter(category='business')))
+    print('Total ', len(newscat.objects.all()))
 
 
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     #     print(i.title)
 #
 #
@@ -77,22 +77,22 @@ def extract_news_general():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # NewsCat.objects.all().delete()
-    # for i in NewsCat.objects.all():
+    # newscat.objects.all().delete()
+    # for i in newscat.objects.all():
     #     print(i.title)
     # print('general',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='general')
 
 
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     #     print(i.title)
 #
 def extract_news_Health():
@@ -100,22 +100,22 @@ def extract_news_Health():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # NewsCat.objects.all().delete()
-    # for i in NewsCat.objects.all():
+    # newscat.objects.all().delete()
+    # for i in newscat.objects.all():
     #     print(i.title)
     # print('health',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='health')
 
 
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     #     print(i.title)
 
 def extract_news_science():
@@ -123,8 +123,8 @@ def extract_news_science():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # NewsCat.objects.all().delete()
-    # for i in NewsCat.objects.all():
+    # newscat.objects.all().delete()
+    # for i in newscat.objects.all():
     #     print(i.title)
     # print('science',len(json_output))
     news_data = json.loads(json_output)
@@ -132,14 +132,14 @@ def extract_news_science():
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='science')
 
 
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     #     print(i.title)
 
 def extract_news_techonology():
@@ -147,8 +147,8 @@ def extract_news_techonology():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # NewsCat.objects.all().delete()
-    # for i in NewsCat.objects.all():
+    # newscat.objects.all().delete()
+    # for i in newscat.objects.all():
     #     print(i.title)
     # print('technology',len(json_output))
     news_data = json.loads(json_output)
@@ -156,13 +156,13 @@ def extract_news_techonology():
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                             description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
                                             PublishedAt=u['publishedAt'][:10], content=u['content'],
                                             category='technology')
 
 
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     #     print(i.title)
 
 def extract_news_entertainment():
@@ -170,17 +170,17 @@ def extract_news_entertainment():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
-    # NewsCat.objects.all().delete()
-    # for i in NewsCat.objects.all():
+    # newscat.objects.all().delete()
+    # for i in newscat.objects.all():
     #     print(i.title)
     # print('entertainmnet',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
             u['author'] = 'not found'
-        i, created = NewsCat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
+        i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                             description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
                                             PublishedAt=u['publishedAt'][:10], content=u['content'],
                                             category='entertainment')
-#     # for i in NewsCat.objects.all():
+#     # for i in newscat.objects.all():
 #     print(i.title)
