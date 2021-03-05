@@ -1,1 +1,1 @@
-web: gunicorn NEWSS.wsgi
+web: gunicorn NEWSS.wsgi:application
