@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'drf_multiple_model',
     'CategoryNews',
     'corsheaders',
+    'storenews',
 ]
 
 MIDDLEWARE = [

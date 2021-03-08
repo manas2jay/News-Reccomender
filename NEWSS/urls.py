@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('TopHeadlines.urls')),
     path('news/',include('CategoryNews.urls')),
+    path('adduser/',include('storenews.urls')),
 ]
