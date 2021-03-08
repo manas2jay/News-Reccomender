@@ -1,8 +1,14 @@
 from django.shortcuts import render, HttpResponse
-from .models import store, user_news
+from .models import store, user_news, recommend
+from .serializers import UserSerializer
+from rest_framework import generics
 
 
 # Create your views here.
+class ListUserNews(generics.ListAPIView):
+    def re
+    queryset = user_news.objects.all()
+    serializer_class = UserSerializer
 
 def getnews(request):
     store(request.GET['user'], request.GET['description'])
@@ -26,3 +32,11 @@ def deleteuser(request):
     else:
         user_news.objects.all().filter(user=request.GET['user']).delete()
         return HttpResponse('deleted')
+
+
+def recommender(request):
+    if len(user_news.objects.all().filter(user=request.GET['user'])) == 0:
+        return Null
+    else:
+        resultant = recommend(user_news.objects.all().filter(user=request.GET['user']))
+        return user
