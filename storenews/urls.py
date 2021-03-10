@@ -9,6 +9,6 @@ urlpatterns = [
     path('show',show),
     path('deleteall',deletealluserrec),
     path('delete',deleteuser),
-    path('recommend',ListUserNews.as_view()),
+    #path('recommend',ListUserNews.as_view()),
     #path('showallusernewstable',ListUserNews.as_view()),
 ]

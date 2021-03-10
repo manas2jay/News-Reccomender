@@ -9,7 +9,7 @@ class newscat(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(max_length=500, null=True, blank=True)
     url = models.URLField(max_length=1000, null=True, blank=True)
-    UrlToImage = models.ImageField(max_length=1000, null=True, blank=True)
+    UrlToImage = models.URLField(max_length=1000, null=True, blank=True)
     PublishedAt = models.DateField()
     content = models.TextField(max_length=1000, null=True, blank=True)
     category = models.CharField(max_length=200, null=True, blank=True)
