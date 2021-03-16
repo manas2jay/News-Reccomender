@@ -4,15 +4,15 @@ from django.db import models
 # Create your models here.
 class newscat(models.Model):
     id = models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True),
-    source = models.CharField(max_length=100, null=True, blank=True)
-    author = models.CharField(max_length=100, null=True, blank=True)
-    title = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
+    source = models.CharField(max_length=1000, null=True, blank=True)
+    author = models.CharField(max_length=1000, null=True, blank=True)
+    title = models.CharField(max_length=2000, null=True, blank=True)
+    description = models.TextField(max_length=5000, null=True, blank=True)
     url = models.URLField(max_length=1000, null=True, blank=True)
     UrlToImage = models.URLField(max_length=1000, null=True, blank=True)
     PublishedAt = models.DateField()
     content = models.TextField(max_length=1000, null=True, blank=True)
-    category = models.CharField(max_length=200, null=True, blank=True)
+    category = models.CharField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -52,8 +52,8 @@ def extract_news_business():
     url = 'http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=6713ffdf1ac5461bbae3c39be1978aac&pageSize=100'
     response = requests.get(url)
     json_output = json.dumps(response.json(), indent=4)
-    print('before business deltetion', len(newscat.objects.all()))
-    print('after business deltetion', len(newscat.objects.all()))
+    #print('before business deltetion', len(newscat.objects.all()))
+    #print('after business deltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
@@ -64,8 +64,7 @@ def extract_news_business():
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='business')
 
-    print('After business updation', len(newscat.objects.all().filter(category='business')))
-    print('Total ', len(newscat.objects.all()))
+
 
 
 #     # for i in newscat.objects.all():
@@ -100,6 +99,7 @@ def extract_news_Health():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
+
     # newscat.objects.all().delete()
     # for i in newscat.objects.all():
     #     print(i.title)
@@ -123,6 +123,8 @@ def extract_news_science():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
+    # print('before science deltetion', len(newscat.objects.all()))
+    # print('after science deltetion', len(newscat.objects.all()))
     # newscat.objects.all().delete()
     # for i in newscat.objects.all():
     #     print(i.title)
@@ -137,7 +139,8 @@ def extract_news_science():
                                                       UrlToImage=u['urlToImage'],
                                                       PublishedAt=u['publishedAt'][:10], content=u['content'],
                                                       category='science')
-
+        # print('After science updation', len(newscat.objects.all().filter(category='business')))
+        # print('Total ', len(newscat.objects.all()))
 
 #     # for i in newscat.objects.all():
 #     #     print(i.title)
@@ -147,6 +150,8 @@ def extract_news_techonology():
     response = requests.get(url)
     news_list = []
     json_output = json.dumps(response.json(), indent=4)
+    # print('before  deltetion', len(newscat.objects.all()))
+    print('after technology deltetion', len(newscat.objects.all()))
     # newscat.objects.all().delete()
     # for i in newscat.objects.all():
     #     print(i.title)
@@ -160,7 +165,8 @@ def extract_news_techonology():
                                             description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
                                             PublishedAt=u['publishedAt'][:10], content=u['content'],
                                             category='technology')
-
+    print('After technology updation', len(newscat.objects.all().filter(category='technology')))
+    print('Total ', len(newscat.objects.all()))
 
 #     # for i in newscat.objects.all():
 #     #     print(i.title)
@@ -182,5 +188,6 @@ def extract_news_entertainment():
                                             description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
                                             PublishedAt=u['publishedAt'][:10], content=u['content'],
                                             category='entertainment')
+
 #     # for i in newscat.objects.all():
 #     print(i.title)

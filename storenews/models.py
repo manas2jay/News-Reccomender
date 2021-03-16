@@ -11,6 +11,8 @@ def store(userid, desc):
     a = user_news.objects.create(user=userid, description=desc)
 
 
+# still working
+
 def recommend(user_news_list):
     for i in user_news_list:
         print(i.description)

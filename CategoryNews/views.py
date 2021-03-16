@@ -113,9 +113,10 @@ def refresh(request):
     businessrefresh()
     generalrefresh()
     healthrefresh()
-    entetainmentrefresh()
-    technologyrefresh()
+
     sciencerefresh()
+    technologyrefresh()
+    entetainmentrefresh()
     return HttpResponse('all refreshed')
 
 
