@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'CategoryNews',
     'corsheaders',
     'storenews',
+    'recommender',
 ]
 
 MIDDLEWARE = [
