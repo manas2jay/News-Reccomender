@@ -52,8 +52,8 @@ def extract_news_business():
     url = 'http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=6713ffdf1ac5461bbae3c39be1978aac&pageSize=100'
     response = requests.get(url)
     json_output = json.dumps(response.json(), indent=4)
-    #print('before business deltetion', len(newscat.objects.all()))
-    #print('after business deltetion', len(newscat.objects.all()))
+    # print('before business deltetion', len(newscat.objects.all()))
+    # print('after business deltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
         if u['author'] == 'NULL':
@@ -65,12 +65,6 @@ def extract_news_business():
                                                       category='business')
 
 
-
-
-#     # for i in newscat.objects.all():
-#     #     print(i.title)
-#
-#
 def extract_news_general():
     url = 'http://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=4edd10e4067c48eabfbebdf072f6d9ad&pageSize=100'
     response = requests.get(url)
@@ -142,6 +136,7 @@ def extract_news_science():
         # print('After science updation', len(newscat.objects.all().filter(category='business')))
         # print('Total ', len(newscat.objects.all()))
 
+
 #     # for i in newscat.objects.all():
 #     #     print(i.title)
 
@@ -162,11 +157,13 @@ def extract_news_techonology():
         if u['author'] == 'NULL':
             u['author'] = 'not found'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
-                                            description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
-                                            PublishedAt=u['publishedAt'][:10], content=u['content'],
-                                            category='technology')
+                                                      description=u['description'], url=u['url'],
+                                                      UrlToImage=u['urlToImage'],
+                                                      PublishedAt=u['publishedAt'][:10], content=u['content'],
+                                                      category='technology')
     print('After technology updation', len(newscat.objects.all().filter(category='technology')))
     print('Total ', len(newscat.objects.all()))
+
 
 #     # for i in newscat.objects.all():
 #     #     print(i.title)
@@ -185,9 +182,10 @@ def extract_news_entertainment():
         if u['author'] == 'NULL':
             u['author'] = 'not found'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
-                                            description=u['description'], url=u['url'], UrlToImage=u['urlToImage'],
-                                            PublishedAt=u['publishedAt'][:10], content=u['content'],
-                                            category='entertainment')
+                                                      description=u['description'], url=u['url'],
+                                                      UrlToImage=u['urlToImage'],
+                                                      PublishedAt=u['publishedAt'][:10], content=u['content'],
+                                                      category='entertainment')
 
 #     # for i in newscat.objects.all():
 #     print(i.title)

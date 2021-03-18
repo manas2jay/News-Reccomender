@@ -113,7 +113,6 @@ def refresh(request):
     businessrefresh()
     generalrefresh()
     healthrefresh()
-
     sciencerefresh()
     technologyrefresh()
     entetainmentrefresh()
