@@ -2,12 +2,22 @@ from django.shortcuts import render, HttpResponse
 from .models import store, user_news
 from .serializers import UserSerializer
 from rest_framework import generics
+import json
 
 
-# Create your views here.
 class ListUserNews(generics.ListAPIView):
     queryset = user_news.objects.all()
     serializer_class = UserSerializer
+
+def recomend(request):
+    a=[]
+    for i in user_news.objects.all().filter(user=request.GET['user']):
+        a.append(i.description)
+    print(a)
+    return HttpResponse(a)
+
+# Create your views here.
+
 
 
 def getnews(request):

@@ -150,3 +150,7 @@ REST_FRAMEWORK = {
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 django_heroku.settings(locals())
+
+DJANGO_NOTIFICATIONS_CONFIG = {
+'USE_JSONFIELD': True
+}

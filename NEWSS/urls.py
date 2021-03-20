@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('TopHeadlines.urls')),
     path('news/', include('CategoryNews.urls')),
     path('adduser/', include('storenews.urls')),
-    path('recommend', include('recommender.urls')),
+    path('recommend/', include('recommender.urls')),
 ]
