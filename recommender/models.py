@@ -1,12 +1,13 @@
 from django.db import models
 import requests, json
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 # from nltk import word_tokenize
 # from nltk.stem import WordNetLemmatizer
 # import nltk
 # from nltk.corpus import stopwords
-
+from .rec import similarity
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class recommender_user(models.Model):
 
 def corpus(topic='description'):
     a = []
-    url = 'https://newsapi.org/v2/everything?q=bitcoin&apiKey=4edd10e4067c48eabfbebdf072f6d9ad'
+    url = 'https://newsapi.org/v2/everything?q=india&apiKey=4edd10e4067c48eabfbebdf072f6d9ad&pageSize=100'
     response = requests.get(url)
     news_list = []
     recommender_user.objects.all().delete()
@@ -46,15 +47,37 @@ def corpus(topic='description'):
 def get_recommend(user):
     url = 'http://192.168.1.45:8000/adduser/recommend?user=' + str(user)
     response = requests.get(url)
-    print(response.text)
+    #print(response.text)
     s = response.content
     s = str(s).split("''")
-    print(s)
+    #print(s)
     s[0]=s[0][3:]
     s[-1] = s[-1][:-2]
     sample = []
     for i in s:
         sample.append(i)
-    print(sample)
+    print(['*'*400],'\n',sample)
+    corpus()
+    corp = []
+    for i in recommender_user.objects.all():
+        corp.append(i.description)
 
+    simliarity_list = similarity(sample,corp)
+    pivot=(sum(simliarity_list.values())/len(simliarity_list.values()))+0.05
+    print(pivot)
+    dele = []
+    for key,val in simliarity_list.items():
+        if val>=pivot:
+            continue
+        else:
+            dele.append(key)
+    for i in dele:
+        del simliarity_list[i]
+    for i in recommender_user.objects.all():
+        if i.description in simliarity_list.keys():
+            continue
+        else:
+            recommender_user.objects.all().filter(description=i.description).delete()
 
+    for i in simliarity_list.keys():
+        print(i,simliarity_list[i])

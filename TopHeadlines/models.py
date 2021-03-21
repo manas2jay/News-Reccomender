@@ -4,14 +4,14 @@ from django.db import models
 # Create your models here.
 class Topheadline_detail(models.Model):
     id = models.AutoField(verbose_name='ID',serialize=False,auto_created=True,primary_key=True),
-    source = models.CharField(max_length=100,null=True,blank=True)
-    author = models.CharField(max_length=100,null=True,blank=True)
-    title = models.CharField(max_length=200,null=True,blank=True)
-    description = models.TextField(max_length=500,null=True,blank=True)
-    url = models.URLField(max_length=1000,null=True,blank=True)
-    UrlToImage = models.URLField(max_length=1000,null=True,blank=True)
+    source = models.CharField(max_length=1000,null=True,blank=True)
+    author = models.CharField(max_length=1000,null=True,blank=True)
+    title = models.CharField(max_length=2000,null=True,blank=True)
+    description = models.TextField(max_length=5000,null=True,blank=True)
+    url = models.URLField(max_length=10000,null=True,blank=True)
+    UrlToImage = models.URLField(max_length=10000,null=True,blank=True)
     PublishedAt = models.DateField()
-    content = models.TextField(max_length=1000,null=True,blank=True)
+    content = models.TextField(max_length=10000,null=True,blank=True)
 
     def __str__(self):
         return self.title

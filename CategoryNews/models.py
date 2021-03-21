@@ -11,7 +11,7 @@ class newscat(models.Model):
     url = models.URLField(max_length=1000, null=True, blank=True)
     UrlToImage = models.URLField(max_length=1000, null=True, blank=True)
     PublishedAt = models.DateField()
-    content = models.TextField(max_length=1000, null=True, blank=True)
+    content = models.TextField(max_length=10000, null=True, blank=True)
     category = models.CharField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
