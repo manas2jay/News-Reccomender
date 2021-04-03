@@ -45,7 +45,7 @@ def corpus(topic='description'):
 
 
 def get_recommend(user):
-    url = 'http://192.168.1.45:8000/adduser/recommend?user=' + str(user)
+    url = 'http://192.168.29.226:8000/adduser/recommend?user=' + str(user)
     response = requests.get(url)
     #print(response.text)
     s = response.content
@@ -63,7 +63,7 @@ def get_recommend(user):
         corp.append(i.description)
 
     simliarity_list = similarity(sample,corp)
-    pivot=(sum(simliarity_list.values())/len(simliarity_list.values()))+0.05
+    pivot=(sum(simliarity_list.values())/len(simliarity_list.values()))+0.005
     print(pivot)
     dele = []
     for key,val in simliarity_list.items():
