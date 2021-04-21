@@ -36,6 +36,10 @@ def corpus(topic='description'):
     news_data = json.loads(json_output)
     c = 1.0
     for u in news_data['articles']:
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i = recommender_user.objects.create(id=c,author=u['author'], title=u['title'],
                                                                description=u['description'], url=u['url'],
                                                                UrlToImage=u['urlToImage'],
@@ -45,6 +49,7 @@ def corpus(topic='description'):
 
 
 def get_recommend(user):
+    print(str(user))
     url = 'http://192.168.29.226:8000/adduser/recommend?user=' + str(user)
     response = requests.get(url)
     #print(response.text)
@@ -63,7 +68,7 @@ def get_recommend(user):
         corp.append(i.description)
 
     simliarity_list = similarity(sample,corp)
-    pivot=(sum(simliarity_list.values())/len(simliarity_list.values()))+0.005
+    pivot=(sum(simliarity_list.values())/len(simliarity_list.values()))+0.0045
     print(pivot)
     dele = []
     for key,val in simliarity_list.items():

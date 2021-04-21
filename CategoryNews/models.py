@@ -35,8 +35,10 @@ def extract_news_sports():
     # print('after sportsdeltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -56,8 +58,10 @@ def extract_news_business():
     # print('after business deltetion', len(newscat.objects.all()))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -76,8 +80,10 @@ def extract_news_general():
     # print('general',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -100,8 +106,10 @@ def extract_news_Health():
     # print('health',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -126,8 +134,10 @@ def extract_news_science():
     news_data = json.loads(json_output)
 
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -154,8 +164,10 @@ def extract_news_techonology():
     news_data = json.loads(json_output)
 
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],
@@ -179,8 +191,10 @@ def extract_news_entertainment():
     # print('entertainmnet',len(json_output))
     news_data = json.loads(json_output)
     for u in news_data['articles']:
-        if u['author'] == 'NULL':
-            u['author'] = 'not found'
+        if u['author'] is None:
+            u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = newscat.objects.update_or_create(source=u['source']['name'], author=u['author'], title=u['title'],
                                                       description=u['description'], url=u['url'],
                                                       UrlToImage=u['urlToImage'],

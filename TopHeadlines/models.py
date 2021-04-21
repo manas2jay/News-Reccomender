@@ -31,8 +31,10 @@ def extract_news():
     print('after deltetion', len(Topheadline_detail.objects.all()))
     c = 1.0
     for u in news_data['articles']:
-        if u['author']=='NULL':
+        if u['author'] is None:
             u['author']='not found'
+        if u['urlToImage'] is None:
+            u['urlToImage'] = 'https://newsinterpretation.com/wp-content/uploads/2020/03/news33.jpg'
         i, created = Topheadline_detail.objects.update_or_create(id=c,source=u['source']['name'],author=u['author'],title=u['title'],description=u['description'],url=u['url'],UrlToImage=u['urlToImage'],PublishedAt=u['publishedAt'][:10],content=u['content'])
         c+=1.0
 
